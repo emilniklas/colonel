@@ -4,6 +4,7 @@
 * Stubbed out directories and build environment.
 * Stubbed out test environment and added Jest.
 * Added linter. :cop:
+* Added Travis CI. :arrows_counterclockwise:
 
 ---
 
