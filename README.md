@@ -71,10 +71,7 @@ class GreetArgvParser implements ArgvParser<GreetOptions> {
    * value inside a case clause does not match the
    * type of that option's defined value.
    */
-  option (
-    stream: ArgvStream,
-    flag: keyof GreetOptions
-  ): GreetOptions[typeof flag] | undefined {
+  option (stream: ArgvStream, flag: keyof GreetOptions): GreetOptions[typeof flag] {
     switch (flag) {
       case 'name':
         return stream.next()
