@@ -7,12 +7,27 @@
   "author": "Emil Persson <emil.persson@creuna.se>",
   "license": "WTFPL",
   "scripts": {
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "test": "tsc -p tsconfig.test.json --noEmit && jest"
   },
   "devDependencies": {
+    "@types/jest": "^18.1.1",
+    "jest": "^18.1.0",
+    "ts-jest": "^18.0.3",
     "typescript": "^2.1.5"
   },
   "dependencies": {
     "tslib": "^1.5.0"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }
