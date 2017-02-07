@@ -6,6 +6,19 @@
 * Added linter. :cop:
 * Added Travis CI. :arrows_counterclockwise:
 
+### First Pass
+* Added `DefaultsOptionsProvider`:
+
+```typescript
+interface MyOptions {
+  field: number
+}
+
+const provider = new DefaultsOptionsProvider<MyOptions>({
+  field: 123
+})
+```
+
 ---
 
 # 0.0.0
