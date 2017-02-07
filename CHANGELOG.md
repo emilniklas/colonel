@@ -19,6 +19,30 @@ const provider = new DefaultsOptionsProvider<MyOptions>({
 })
 ```
 
+* Added `CommandHandler`:
+
+```typescript
+import {Program, Command, CommandHandler, DefaultsOptionsProvider} from 'colonel'
+
+interface MyOptions {
+  field: string
+}
+
+class MyCommand implements Command<MyOptions> {
+  execute ({ field }: MyOptions) {
+    console.log(field)
+  }
+}
+
+const handler = new CommandHandler<MyOptions>(
+  new MyCommand(),
+  [new DefaultsOptionsProvider<MyOptions>({ field: 'default' })]
+)
+
+declare program: Program
+handler.execute(program)
+```
+
 ---
 
 # 0.0.0
