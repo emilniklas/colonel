@@ -5,5 +5,14 @@
   "main": "dist/index.js",
   "repository": "emilniklas/colonel",
   "author": "Emil Persson <emil.persson@creuna.se>",
-  "license": "WTFPL"
+  "license": "WTFPL",
+  "scripts": {
+    "prepublish": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^2.1.5"
+  },
+  "dependencies": {
+    "tslib": "^1.5.0"
+  }
 }
