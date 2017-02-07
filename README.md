@@ -1,5 +1,7 @@
 # Colonel
 
+[![Build Status](https://travis-ci.org/emilniklas/colonel.svg?branch=master)](https://travis-ci.org/emilniklas/colonel)
+
 A strongly typed and manageable CLI library.
 
 There are a lot of libraries on NPM that simplify parsing command line arguments, but they
