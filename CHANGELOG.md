@@ -38,9 +38,14 @@ const handler = new CommandHandler<MyOptions>(
   new MyCommand(),
   [new DefaultsOptionsProvider<MyOptions>({ field: 'default' })]
 )
+```
 
-declare program: Program
-handler.execute(program)
+* Added `Program`:
+
+```typescript
+const program = new Program(handler)
+
+program.execute([])
 ```
 
 ---

@@ -2,8 +2,9 @@ import {Command} from '../Command'
 import {Program} from '../Program'
 import {OptionsProvider} from '../Options/OptionsProvider'
 import {Partial} from '../Util/Partial'
+import {Handler} from './Handler'
 
-export class CommandHandler <T extends Object> {
+export class CommandHandler <T extends Object> implements Handler {
   constructor (
     public readonly command: Command<T>,
     public readonly providers: OptionsProvider<T>[] = []

@@ -4,8 +4,6 @@ import {Program} from '../../src/Program'
 import {DefaultsOptionsProvider} from '../../src/Options/DefaultsOptionsProvider'
 
 describe('CommandHandler', () => {
-  const program: Program = {}
-
   it('runs a command', async () => {
     let called = false
 
@@ -16,6 +14,7 @@ describe('CommandHandler', () => {
     }
 
     const handler = new CommandHandler<{}>(new XCommand())
+    const program = new Program(handler)
 
     await handler.execute(program)
 
@@ -43,6 +42,7 @@ describe('CommandHandler', () => {
         })
       ]
     )
+    const program = new Program(handler)
 
     await handler.execute(program)
 

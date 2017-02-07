@@ -20,7 +20,7 @@ describe('DefaultsOptionsProvider', () => {
   })
 
   it('satisfies the OptionsProvider interface', async () => {
-    const program: Program = {}
+    const program = new Program({ async execute () {} })
     const p: OptionsProvider<X> = provider
 
     expect(await p.provide(program)).toBe(x)
