@@ -37,7 +37,7 @@ const handler = new CommandHandler(
   new TCommand(),
   new FileOptionsProvider<T>(
     /\.t\.yml$/,
-    new YamlFormatParser(), // or `new JSONFormatParser()`
+    new YamlFormatParser(), // or `new JsonFormatParser()`
     new TOptionsValidator()
   )
 )
