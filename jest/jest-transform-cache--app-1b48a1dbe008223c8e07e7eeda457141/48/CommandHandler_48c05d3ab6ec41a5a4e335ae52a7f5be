@@ -1,0 +1,20 @@
+'use strict';require('ts-jest').install();"use strict";
+const tslib_1 = require("tslib");
+class CommandHandler {
+    constructor(command, providers = []) {
+        this.command = command;
+        this.providers = providers;
+    }
+    execute(program) {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            const provisions = yield Promise.all(this.providers.map(p => p.provide(program)));
+            const options = provisions
+                .reduce((options, partial) => {
+                return tslib_1.__assign({}, options, partial);
+            }, {});
+            yield this.command.execute(options);
+        });
+    }
+}
+exports.CommandHandler = CommandHandler;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ29tbWFuZEhhbmRsZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vLy9hcHAvc3JjL0hhbmRsZXIvQ29tbWFuZEhhbmRsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFNQTtJQUNFLFlBQ2tCLE9BQW1CLEVBQ25CLFlBQWtDLEVBQUU7UUFEcEMsWUFBTyxHQUFQLE9BQU8sQ0FBWTtRQUNuQixjQUFTLEdBQVQsU0FBUyxDQUEyQjtJQUNuRCxDQUFDO0lBRUUsT0FBTyxDQUFFLE9BQWdCOztZQUM3QixNQUFNLFVBQVUsR0FBaUIsTUFBTSxPQUFPLENBQUMsR0FBRyxDQUNoRCxJQUFJLENBQUMsU0FBUyxDQUFDLEdBQUcsQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDLE9BQU8sQ0FBQyxPQUFPLENBQUMsQ0FBQyxDQUM1QyxDQUFBO1lBRUQsTUFBTSxPQUFPLEdBQU0sVUFBVTtpQkFDMUIsTUFBTSxDQUFDLENBQUMsT0FBWSxFQUFFLE9BQVk7Z0JBQ2pDLE1BQU0sc0JBQ0QsT0FBTyxFQUNQLE9BQU8sRUFDWDtZQUNILENBQUMsRUFBRSxFQUFTLENBQUMsQ0FBQTtZQUVmLE1BQU0sSUFBSSxDQUFDLE9BQU8sQ0FBQyxPQUFPLENBQUMsT0FBTyxDQUFDLENBQUE7UUFDckMsQ0FBQztLQUFBO0NBQ0Y7QUFyQkQsd0NBcUJDIn0=

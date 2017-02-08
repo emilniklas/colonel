@@ -1,0 +1,36 @@
+'use strict';require('ts-jest').install();"use strict";
+const tslib_1 = require("tslib");
+const CommandHandler_1 = require("../../src/Handler/CommandHandler");
+const Program_1 = require("../../src/Program");
+const DefaultsOptionsProvider_1 = require("../../src/Options/DefaultsOptionsProvider");
+describe('CommandHandler', () => {
+    it('runs a command', () => tslib_1.__awaiter(this, void 0, void 0, function* () {
+        let called = false;
+        class XCommand {
+            execute() {
+                called = true;
+            }
+        }
+        const handler = new CommandHandler_1.CommandHandler(new XCommand());
+        const program = new Program_1.Program(handler);
+        yield handler.execute(program);
+        expect(called).toBeTruthy();
+    }));
+    it('uses an options provider to fill options', () => tslib_1.__awaiter(this, void 0, void 0, function* () {
+        let result = '';
+        class XCommand {
+            execute({ field }) {
+                result = field;
+            }
+        }
+        const handler = new CommandHandler_1.CommandHandler(new XCommand(), [
+            new DefaultsOptionsProvider_1.DefaultsOptionsProvider({
+                field: 'abc'
+            })
+        ]);
+        const program = new Program_1.Program(handler);
+        yield handler.execute(program);
+        expect(result).toBe('abc');
+    }));
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ29tbWFuZEhhbmRsZXIudGVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImZpbGU6Ly8vL2FwcC9fX3Rlc3RzX18vSGFuZGxlci9Db21tYW5kSGFuZGxlci50ZXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEscUVBQStEO0FBRS9ELCtDQUF5QztBQUN6Qyx1RkFBaUY7QUFFakYsUUFBUSxDQUFDLGdCQUFnQixFQUFFO0lBQ3pCLEVBQUUsQ0FBQyxnQkFBZ0IsRUFBRTtRQUNuQixJQUFJLE1BQU0sR0FBRyxLQUFLLENBQUE7UUFFbEI7WUFDRSxPQUFPO2dCQUNMLE1BQU0sR0FBRyxJQUFJLENBQUE7WUFDZixDQUFDO1NBQ0Y7UUFFRCxNQUFNLE9BQU8sR0FBRyxJQUFJLCtCQUFjLENBQUssSUFBSSxRQUFRLEVBQUUsQ0FBQyxDQUFBO1FBQ3RELE1BQU0sT0FBTyxHQUFHLElBQUksaUJBQU8sQ0FBQyxPQUFPLENBQUMsQ0FBQTtRQUVwQyxNQUFNLE9BQU8sQ0FBQyxPQUFPLENBQUMsT0FBTyxDQUFDLENBQUE7UUFFOUIsTUFBTSxDQUFDLE1BQU0sQ0FBQyxDQUFDLFVBQVUsRUFBRSxDQUFBO0lBQzdCLENBQUMsQ0FBQSxDQUFDLENBQUE7SUFFRixFQUFFLENBQUMsMENBQTBDLEVBQUU7UUFDN0MsSUFBSSxNQUFNLEdBQUcsRUFBRSxDQUFBO1FBTWY7WUFDRSxPQUFPLENBQUUsRUFBRSxLQUFLLEVBQU87Z0JBQ3JCLE1BQU0sR0FBRyxLQUFLLENBQUE7WUFDaEIsQ0FBQztTQUNGO1FBRUQsTUFBTSxPQUFPLEdBQUcsSUFBSSwrQkFBYyxDQUNoQyxJQUFJLFFBQVEsRUFBRSxFQUNkO1lBQ0UsSUFBSSxpREFBdUIsQ0FBTTtnQkFDL0IsS0FBSyxFQUFFLEtBQUs7YUFDYixDQUFDO1NBQ0gsQ0FDRixDQUFBO1FBQ0QsTUFBTSxPQUFPLEdBQUcsSUFBSSxpQkFBTyxDQUFDLE9BQU8sQ0FBQyxDQUFBO1FBRXBDLE1BQU0sT0FBTyxDQUFDLE9BQU8sQ0FBQyxPQUFPLENBQUMsQ0FBQTtRQUU5QixNQUFNLENBQUMsTUFBTSxDQUFDLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFBO0lBQzVCLENBQUMsQ0FBQSxDQUFDLENBQUE7QUFDSixDQUFDLENBQUMsQ0FBQSJ9

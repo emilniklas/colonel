@@ -6,6 +6,48 @@
 * Added linter. :cop:
 * Added Travis CI. :arrows_counterclockwise:
 
+### First Pass
+* Added `DefaultsOptionsProvider`:
+
+```typescript
+interface MyOptions {
+  field: number
+}
+
+const provider = new DefaultsOptionsProvider<MyOptions>({
+  field: 123
+})
+```
+
+* Added `CommandHandler`:
+
+```typescript
+import {Program, Command, CommandHandler, DefaultsOptionsProvider} from 'colonel'
+
+interface MyOptions {
+  field: string
+}
+
+class MyCommand implements Command<MyOptions> {
+  execute ({ field }: MyOptions) {
+    console.log(field)
+  }
+}
+
+const handler = new CommandHandler<MyOptions>(
+  new MyCommand(),
+  [new DefaultsOptionsProvider<MyOptions>({ field: 'default' })]
+)
+```
+
+* Added `Program`:
+
+```typescript
+const program = new Program(handler)
+
+program.execute([])
+```
+
 ---
 
 # 0.0.0
