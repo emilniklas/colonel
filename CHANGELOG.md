@@ -1,5 +1,48 @@
 # 0.0.1
 
+### File Options
+Sometimes a `Command<T>` can get its `T` from a config file. We now have a
+`FileOptionsProvider<T>` that can help with that:
+
+```typescript
+interface T {
+  option: string
+  flag: boolean
+}
+
+class TCommand implements Command<T> {
+  execute (t: T) {
+    // Do something with `t`
+  }
+}
+
+class TOptionsValidator implements OptionsValidator<T> {
+  validate (input: any): Partial<T> {
+    if (typeof input !== 'object') {
+      throw new Error('Input must be an object')
+    }
+
+    const t = {}
+    if (typeof input.option === 'string') {
+      t.option = input.option
+    }
+    if (typeof input.flag === 'boolean') {
+      t.flag = input.flag
+    }
+    return t
+  }
+}
+
+const handler = new CommandHandler(
+  new TCommand(),
+  new FileOptionsProvider<T>(
+    /\.t\.yml$/,
+    new YamlParser(), // or `new JSONParser()`
+    new TOptionsValidator()
+  )
+)
+```
+
 ### Argv
 A `Command<T>` needs a way to receive a `T` from command line arguments. To do that, an
 implementation of the `OptionsProvider<T>` called `ArgvOptionsProvider<T>` is available
