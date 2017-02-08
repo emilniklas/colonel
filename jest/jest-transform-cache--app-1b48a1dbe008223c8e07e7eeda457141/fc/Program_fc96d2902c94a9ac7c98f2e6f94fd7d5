@@ -1,0 +1,14 @@
+'use strict';require('ts-jest').install();"use strict";
+const tslib_1 = require("tslib");
+class Program {
+    constructor(_handler) {
+        this._handler = _handler;
+    }
+    execute(argv) {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            yield this._handler.execute(this);
+        });
+    }
+}
+exports.Program = Program;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUHJvZ3JhbS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImZpbGU6Ly8vL2FwcC9zcmMvUHJvZ3JhbS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUVBO0lBQ0UsWUFDVSxRQUFpQjtRQUFqQixhQUFRLEdBQVIsUUFBUSxDQUFTO0lBQ3hCLENBQUM7SUFFRSxPQUFPLENBQUUsSUFBYzs7WUFDM0IsTUFBTSxJQUFJLENBQUMsUUFBUSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQTtRQUNuQyxDQUFDO0tBQUE7Q0FDRjtBQVJELDBCQVFDIn0=
