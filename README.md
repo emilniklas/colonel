@@ -205,5 +205,5 @@ const program = new Program(greetHandler, new MyProgramDisplay())
 // When we're ready to start the program, we simply need
 // to strip away the `['/path/to/node', '/path/to/cli.js']`
 // part of `process.argv`, and run `execute`
-program.execute(process.argv.slice(2))
+program.execute()
 ```

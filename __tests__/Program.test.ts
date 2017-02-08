@@ -9,7 +9,7 @@ describe('Program', () => {
       }
     })
 
-    await program.execute([])
+    await program.execute()
 
     expect(other).toBe(program)
   })

@@ -5,7 +5,7 @@ export class Program {
     private _handler: Handler
   ) {}
 
-  async execute (argv: string[]): Promise<void> {
+  async execute (): Promise<void> {
     await this._handler.execute(this)
   }
 }
