@@ -1,16 +1,20 @@
 import {Program} from '../src/Program'
+import {Kernel} from '../src/Kernel'
 
 describe('Program', () => {
-  it('passes itself into a command handler', async () => {
-    let other: Program | undefined
+  it('passes its kernel into a command handler', async () => {
+    let other: Kernel | undefined
+
     const program = new Program({
-      async execute (program: Program) {
-        other = program
+      async execute (kernel: Kernel) {
+        other = kernel
       }
     })
 
-    await program.execute()
+    const kernel = {}
 
-    expect(other).toBe(program)
+    await program.execute(kernel)
+
+    expect(other).toBe(kernel)
   })
 })
