@@ -143,7 +143,7 @@ const optionsProviders: OptionsProvider<GreetOptions>[] = [
   // extract some options from a YAML config file.
   new FileOptionsProvider<GreetOptions>(
     /^\.greet\.yml$/,
-    new YamlParser(), // A JsonParser is also available!
+    new YamlFormatParser(), // A JsonFormatParser is also available!
     new GreetPartialValidator()
   ),
 
