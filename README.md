@@ -126,7 +126,7 @@ class GreetPartialValidator implements PartialValidator<GreetOptions> {
 // First, we need to create a list of options
 // providers, that collaborate to build up the
 // options from different sources.
-const optionProviders: OptionProvider<GreetOptions>[] = [
+const optionsProviders: OptionsProvider<GreetOptions>[] = [
 
   // First, we can make a provider containing the
   // default options.
@@ -158,7 +158,7 @@ const optionProviders: OptionProvider<GreetOptions>[] = [
 // command with a `CommandHandler`.
 const greetHandler = new CommandHandler<GreetOptions>(
   new GreetCommand(),
-  optionProviders
+  optionsProviders
 )
 
 // Finally, we pass in our handler into the main

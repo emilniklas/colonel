@@ -6,7 +6,16 @@
 * Added linter. :cop:
 * Added Travis CI. :arrows_counterclockwise:
 
-### First Pass
+### Core
+The core archetecture is built like this; a `Program` is executed, creating (or receiving)
+a `Kernel` that it passes on to its `Handler`, which needs to perform some action. The
+`Kernel` acts as the link to the OS and IO, such that it can be mocked for testing.
+
+The `CommandHandler` (one implementation of the `Handler` interface), passes the `Kernel`
+into each of a list of `OptionsProvider<T>`s, which together establish a `T` from the data
+available through the `Kernel`. The `T` is then passed into a `Command<T>` which finally
+executes the action.
+
 * Added `DefaultsOptionsProvider`:
 
 ```typescript
@@ -45,8 +54,20 @@ const handler = new CommandHandler<MyOptions>(
 ```typescript
 const program = new Program(handler)
 
-program.execute([])
+program.execute()
 ```
+
+Optionally, a `Kernel` can be sent into the `execute()` method. If none is provided, a
+`NodeKernel` will be used. The `Kernel` contains the argument vector:
+
+```typescript
+interface Kernel {
+  readonly argv?: string[]
+}
+```
+
+### Argv
+
 
 ---
 

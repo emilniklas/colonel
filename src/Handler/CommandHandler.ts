@@ -1,5 +1,5 @@
 import {Command} from '../Command'
-import {Program} from '../Program'
+import {Kernel} from '../Kernel'
 import {OptionsProvider} from '../Options/OptionsProvider'
 import {Partial} from '../Util/Partial'
 import {Handler} from './Handler'
@@ -10,9 +10,9 @@ export class CommandHandler <T extends Object> implements Handler {
     public readonly providers: OptionsProvider<T>[] = []
   ) {}
 
-  async execute (program: Program): Promise<void> {
+  async execute (kernel: Kernel): Promise<void> {
     const provisions: Partial<T>[] = await Promise.all(
-      this.providers.map(p => p.provide(program))
+      this.providers.map(p => p.provide(kernel))
     )
 
     const options: T = provisions
