@@ -1,7 +1,7 @@
 import {Path, DirectoryPath, FilePath} from '../FileSystem/Path'
 import * as path from 'path'
 
-interface NodePath {
+export interface NodePath {
   new (absolute: string, isDirectory: true): DirectoryPath
   new (absolute: string, isDirectory: false): FilePath
   new (absolute: string, isDirectory: boolean): Path
