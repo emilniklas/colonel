@@ -22,17 +22,20 @@ describe('FileOptionsProvider', () => {
       new OptsValidator()
     )
 
-    const testfile = '{"option":"value"}'
+    const testfile = {
+      content: '{"option":"value"}',
+      path: { absolute: 'testfile', isFile: true }
+    }
 
     const opts = await provider.provide({
       filesystem: {
         async findFirstUpward (pat: string | RegExp) {
           expect(pat).toEqual(/testfile$/)
-          return 'testfile'
+          return testfile.path
         },
         async readFile (path: any) {
-          expect(path).toEqual('testfile')
-          return testfile
+          expect(path).toEqual(testfile.path)
+          return testfile.content
         }
       } as any
     })

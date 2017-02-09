@@ -1,6 +1,7 @@
 import {Validator} from './Validator'
 import {FormatParser} from './FormatParser'
 import {OptionsProvider} from '../Options/OptionsProvider'
+import {Path, FilePath} from '../FileSystem/Path'
 import {Kernel} from '../Kernel'
 import {Partial} from '../Util/Partial'
 
@@ -18,7 +19,7 @@ export class FileOptionsProvider <T> implements OptionsProvider<T> {
 
     const path = await filesystem.findFirstUpward(this.pattern)
 
-    if (path == null) {
+    if (path == null || !(this._isFile(path))) {
       return {} as any
     }
 
@@ -27,5 +28,9 @@ export class FileOptionsProvider <T> implements OptionsProvider<T> {
     const validated = this.validator.validate(decoded)
 
     return validated
+  }
+
+  _isFile (path: Path): path is FilePath {
+    return path.isFile
   }
 }
