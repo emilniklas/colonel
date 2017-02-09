@@ -7,6 +7,7 @@ import {Handler} from './Handler'
 export class CommandHandler <T extends Object> implements Handler {
   constructor (
     public readonly command: Command<T>,
+    public readonly defaultOptions: T,
     public readonly providers: OptionsProvider<T>[] = []
   ) {}
 
@@ -21,7 +22,7 @@ export class CommandHandler <T extends Object> implements Handler {
           ...options,
           ...partial
         }
-      }, {} as any)
+      }, this.defaultOptions)
 
     await this.command.execute(options)
   }

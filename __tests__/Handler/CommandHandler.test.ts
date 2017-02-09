@@ -1,7 +1,6 @@
 import {CommandHandler} from '../../src/Handler/CommandHandler'
 import {Command} from '../../src/Command'
 import {Program} from '../../src/Program'
-import {DefaultsOptionsProvider} from '../../src/Options/DefaultsOptionsProvider'
 
 describe('CommandHandler', () => {
   it('runs a command', async () => {
@@ -13,7 +12,7 @@ describe('CommandHandler', () => {
       }
     }
 
-    const handler = new CommandHandler<{}>(new XCommand())
+    const handler = new CommandHandler<{}>(new XCommand(), {})
     const program = new Program(handler)
 
     await handler.execute(program)
@@ -34,14 +33,9 @@ describe('CommandHandler', () => {
       }
     }
 
-    const handler = new CommandHandler<Opt>(
-      new XCommand(),
-      [
-        new DefaultsOptionsProvider<Opt>({
-          field: 'abc'
-        })
-      ]
-    )
+    const handler = new CommandHandler<Opt>(new XCommand(), {
+      field: 'abc'
+    })
     const program = new Program(handler)
 
     await handler.execute(program)

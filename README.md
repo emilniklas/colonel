@@ -128,16 +128,8 @@ class GreetPartialValidator implements PartialValidator<GreetOptions> {
 // options from different sources.
 const optionsProviders: OptionsProvider<GreetOptions>[] = [
 
-  // First, we can make a provider containing the
-  // default options.
-  new DefaultsOptionsProvider<GreetOptions>({
-    name: 'Universe',
-    age: 4.5e9
-  }),
-
   // The order matters. The latter providers will
-  // take precedence, so it's important that the
-  // default options comes first.
+  // take precedence.
   //
   // Using our `PartialValidator` from before to
   // extract some options from a YAML config file.
@@ -154,10 +146,25 @@ const optionsProviders: OptionsProvider<GreetOptions>[] = [
   )
 ]
 
+// To make sure that the command always receives a
+// complete `GreetOptions` object, and not a
+// `Partial<GreetOptions>`, we need to start with
+// a complete object and apply changes to that.
+//
+// So we provide an object with the default options.
+// If an option can be undefined and not have a
+// default value, the interface must declare that
+// with `field?: Type` or `field: Type | undefined`.
+const defaultOptions: GreetOptions = {
+  name: 'Universe',
+  age: 4.5e9
+}
+
 // We can now assemble our option providers and the
 // command with a `CommandHandler`.
 const greetHandler = new CommandHandler<GreetOptions>(
   new GreetCommand(),
+  defaultOptions,
   optionsProviders
 )
 

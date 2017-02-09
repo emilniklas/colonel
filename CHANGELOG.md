@@ -1,5 +1,16 @@
 # 0.0.1
 
+* Removed the `DefaultsOptionsProvider<T>` and instead requires the `CommandHandler<T>` to
+  be created with a default `T`.
+
+```typescript
+const handler = new CommandHandler<T>(
+  new TCommand(),
+  { ... } as T,
+  [ ... ] as OptionsProvider<T>[]
+)
+```
+
 ### File Options
 Sometimes a `Command<T>` can get its `T` from a config file. We now have a
 `FileOptionsProvider<T>` that can help with that:
