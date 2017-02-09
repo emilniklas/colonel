@@ -44,7 +44,7 @@ describe('NodeFileSystem', () => {
   })
 
   it('can find all files matching the given pattern in ancestor directories', async () => {
-    const paths = await fs.findUpward(/\.true$/)
+    const paths = await fs.findUpward(/^.\.true$/)
 
     expect(paths).toEqual([
       new NodePath('/one/two/three/x.true', false),
@@ -56,7 +56,7 @@ describe('NodeFileSystem', () => {
 
   it('can find the first file matching the given pattern in ancestor directories', async () => {
     expect(
-      await fs.findFirstUpward(/a\.false$/)
+      await fs.findFirstUpward(/^a\.false$/)
     ).toEqual(
       new NodePath('/one/two/a.false', false)
     )
@@ -65,7 +65,7 @@ describe('NodeFileSystem', () => {
   it('can read a file', async () => {
     expect(
       await fs.readFile(
-        await fs.findFirstUpward(/a\.false$/) as FilePath
+        await fs.findFirstUpward(/^a\.false$/) as FilePath
       )
     ).toEqual(
       'Content of /one/two/a.false'

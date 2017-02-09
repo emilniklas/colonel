@@ -27,6 +27,10 @@ class NodePathClass implements Path {
       true
     ) as DirectoryPath
   }
+
+  get basename (): string {
+    return path.basename(this.absolute)
+  }
 }
 
 export const NodePath: NodePath = NodePathClass as any

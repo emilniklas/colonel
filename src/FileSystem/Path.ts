@@ -1,5 +1,6 @@
 export interface Path {
   readonly absolute: string
+  readonly basename: string
   readonly isRoot: boolean
   readonly parent: DirectoryPath
 

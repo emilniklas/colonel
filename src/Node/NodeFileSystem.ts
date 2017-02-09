@@ -100,7 +100,7 @@ export class NodeFileSystem implements FileSystem {
     let out = carry.concat(
         paths.reduce(
           (matching, path) => {
-            if (pattern.test(path.absolute)) {
+            if (pattern.test(path.basename)) {
               return matching.concat(path)
             }
             return matching
