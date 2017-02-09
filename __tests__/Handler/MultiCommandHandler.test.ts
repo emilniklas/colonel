@@ -30,7 +30,7 @@ describe('MultiCommandHandler', () => {
   it('can execute a default command', async () => {
     let result = ''
 
-    const handler = new MultiCommandHandler<Opts>({
+    const handler = new MultiCommandHandler({
       'command': new CommandHandler<Opts>({
         execute ({ field }: Opts) {
           result = field
@@ -50,7 +50,7 @@ describe('MultiCommandHandler', () => {
   })
 
   it('throws if no command matches', async () => {
-    const handler = new MultiCommandHandler<Opts>({})
+    const handler = new MultiCommandHandler({})
 
     try {
       await handler.execute({
@@ -64,7 +64,7 @@ describe('MultiCommandHandler', () => {
   })
 
   it('throws if there is no default command', async () => {
-    const handler = new MultiCommandHandler<Opts>({})
+    const handler = new MultiCommandHandler({})
 
     try {
       await handler.execute({

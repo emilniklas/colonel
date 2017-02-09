@@ -1,6 +1,5 @@
-import {CommandHandler} from './CommandHandler'
-import {Kernel} from '../Kernel'
 import {Handler} from './Handler'
+import {Kernel} from '../Kernel'
 
 export namespace MultiCommandHandler {
   export interface Options {
@@ -8,10 +7,10 @@ export namespace MultiCommandHandler {
   }
 }
 
-export class MultiCommandHandler <T extends Object> implements Handler {
+export class MultiCommandHandler implements Handler {
   constructor (
     public readonly commands: {
-      [command: string]: CommandHandler<T>
+      [command: string]: Handler
     },
     private readonly _options: MultiCommandHandler.Options = {}
   ) {}
