@@ -52,9 +52,15 @@ class GreetArgvParser implements ArgvParser<GreetOptions> {
    * options object.
    */
   readonly flags: Flags<GreetOptions> = {
-    name: ['-n', '--name'],
     age: ['-a', '--age']
   }
+
+  /**
+   * This property defines the order of positional
+   * arguments corresponding with properties on the
+   * options object.
+   */
+  readonly position: (keyof GreetOptions)[] = ['name']
 
   /**
    * This method is used to map the command line
