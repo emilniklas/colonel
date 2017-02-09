@@ -6,6 +6,14 @@
   version "18.1.1"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-18.1.1.tgz#6f63488c64726900885ab9cd5697bb7fa1b416cc"
 
+"@types/node@^7.0.5":
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.5.tgz#96a0f0a618b7b606f1ec547403c00650210bfbb7"
+
+"@types/yamljs@^0.2.30":
+  version "0.2.30"
+  resolved "https://registry.yarnpkg.com/@types/yamljs/-/yamljs-0.2.30.tgz#d034e1d329e46e8d0f737c9a8db97f68f81b5382"
+
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -2470,7 +2478,7 @@ tslib@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.5.0.tgz#3bb50f871e5fdf9a4555a9ff237b730860048fea"
 
-"tslint-eslint-rules@github:krzkaczor/tslint-eslint-rules#prepublish-script":
+tslint-eslint-rules@krzkaczor/tslint-eslint-rules#prepublish-script:
   version "1.2.0"
   resolved "https://codeload.github.com/krzkaczor/tslint-eslint-rules/tar.gz/72a49e088c5476bc124fbbdcbda477e9e2b4d780"
   dependencies:
@@ -2694,6 +2702,13 @@ xml-name-validator@^2.0.1:
 y18n@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
+
+yamljs@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/yamljs/-/yamljs-0.2.8.tgz#ef23fb006e62f6ae07b406aa2a949561f336ea5c"
+  dependencies:
+    argparse "^1.0.7"
+    glob "^7.0.5"
 
 yargs-parser@^4.2.0:
   version "4.2.1"

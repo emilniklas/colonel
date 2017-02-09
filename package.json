@@ -1,8 +1,9 @@
 {
   "name": "colonel",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A strongly typed and manageable CLI library",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "emilniklas/colonel",
   "author": "Emil Persson <emil.persson@creuna.se>",
   "license": "WTFPL",
@@ -12,13 +13,16 @@
   },
   "devDependencies": {
     "@types/jest": "^18.1.1",
+    "@types/node": "^7.0.5",
     "jest": "^18.1.0",
     "standardts": "^1.0.0",
     "ts-jest": "^18.0.3",
     "typescript": "^2.1.5"
   },
   "dependencies": {
-    "tslib": "^1.5.0"
+    "@types/yamljs": "^0.2.30",
+    "tslib": "^1.5.0",
+    "yamljs": "^0.2.8"
   },
   "jest": {
     "transform": {

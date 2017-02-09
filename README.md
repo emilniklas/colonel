@@ -11,9 +11,6 @@ rather than scalability.
 Colonel is written in TypeScript, and offers a strongly typed framework for bootstrapping
 complex command line interfaces.
 
-> **Please Note:** Nothing has actually been implemented yet. The documentation below is
-> only presenting the target API.
-
 ## Installation
 
 ```shell
@@ -55,9 +52,15 @@ class GreetArgvParser implements ArgvParser<GreetOptions> {
    * options object.
    */
   readonly flags: Flags<GreetOptions> = {
-    name: ['-n', '--name'],
     age: ['-a', '--age']
   }
+
+  /**
+   * This property defines the order of positional
+   * arguments corresponding with properties on the
+   * options object.
+   */
+  readonly position: (keyof GreetOptions)[] = ['name']
 
   /**
    * This method is used to map the command line
@@ -90,10 +93,10 @@ class GreetArgvParser implements ArgvParser<GreetOptions> {
  * This is used below for extracting options from a
  * YAML configuration file.
  *
- * `PartialValidator` means that the input object does
+ * `Validator` means that the input object does
  * not need to result in a complete options object.
  */
-class GreetPartialValidator implements PartialValidator<GreetOptions> {
+class GreetValidator implements Validator<GreetOptions> {
   /**
    * A `Partial<T>` object is simply a type alias for
    * `{ [P in keyof T]?: T[P] }`. That means the
@@ -126,25 +129,17 @@ class GreetPartialValidator implements PartialValidator<GreetOptions> {
 // First, we need to create a list of options
 // providers, that collaborate to build up the
 // options from different sources.
-const optionProviders: OptionProvider<GreetOptions>[] = [
-
-  // First, we can make a provider containing the
-  // default options.
-  new DefaultsOptionsProvider<GreetOptions>({
-    name: 'Universe',
-    age: 4.5e9
-  }),
+const optionsProviders: OptionsProvider<GreetOptions>[] = [
 
   // The order matters. The latter providers will
-  // take precedence, so it's important that the
-  // default options comes first.
+  // take precedence.
   //
-  // Using our `PartialValidator` from before to
+  // Using our `Validator` from before to
   // extract some options from a YAML config file.
   new FileOptionsProvider<GreetOptions>(
     /^\.greet\.yml$/,
-    new YamlParser(), // A JsonParser is also available!
-    new GreetPartialValidator()
+    new YamlFormatParser(), // A JsonFormatParser is also available!
+    new GreetValidator()
   ),
 
   // Finally, we can use the `ArgvParser` that we
@@ -154,11 +149,26 @@ const optionProviders: OptionProvider<GreetOptions>[] = [
   )
 ]
 
+// To make sure that the command always receives a
+// complete `GreetOptions` object, and not a
+// `Partial<GreetOptions>`, we need to start with
+// a complete object and apply changes to that.
+//
+// So we provide an object with the default options.
+// If an option can be undefined and not have a
+// default value, the interface must declare that
+// with `field?: Type` or `field: Type | undefined`.
+const defaultOptions: GreetOptions = {
+  name: 'Universe',
+  age: 4.5e9
+}
+
 // We can now assemble our option providers and the
 // command with a `CommandHandler`.
 const greetHandler = new CommandHandler<GreetOptions>(
   new GreetCommand(),
-  optionProviders
+  defaultOptions,
+  optionsProviders
 )
 
 // Finally, we pass in our handler into the main
@@ -205,5 +215,5 @@ const program = new Program(greetHandler, new MyProgramDisplay())
 // When we're ready to start the program, we simply need
 // to strip away the `['/path/to/node', '/path/to/cli.js']`
 // part of `process.argv`, and run `execute`
-program.execute(process.argv.slice(2))
+program.execute()
 ```
