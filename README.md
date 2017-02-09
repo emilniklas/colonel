@@ -11,9 +11,6 @@ rather than scalability.
 Colonel is written in TypeScript, and offers a strongly typed framework for bootstrapping
 complex command line interfaces.
 
-> **Please Note:** Nothing has actually been implemented yet. The documentation below is
-> only presenting the target API.
-
 ## Installation
 
 ```shell
