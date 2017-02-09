@@ -1,5 +1,30 @@
 # 0.0.1
 
+* Added positional command arguments.
+
+```typescript
+interface T {
+  option: number,
+  argument: number
+}
+
+const TArgvParser implements ArgvParser<T> {
+  flags = {
+    option: ['--option']
+  }
+
+  positions = ['argument']
+
+  option (stream: ArgvStream, option: keyof T): T[typeof option] {
+    switch (option) {
+      case 'option':
+      case 'argument':
+        return parseInt(stream.next())
+    }
+  }
+}
+```
+
 * Added the `MultiCommandHandler`.
 
 ```typescript

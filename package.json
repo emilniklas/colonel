@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "A strongly typed and manageable CLI library",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "emilniklas/colonel",
   "author": "Emil Persson <emil.persson@creuna.se>",
   "license": "WTFPL",

@@ -1,4 +1,6 @@
 export class ArgvStream {
+  private _index = 0
+
   constructor (
     private _items: string[]
   ) {}
@@ -8,14 +10,26 @@ export class ArgvStream {
       throw new Error('ArgvStream is empty')
     }
 
-    const next = this._items[0]
+    const next = this._items[this._index]
 
-    this._items = this._items.slice(1)
+    this._index++
+
+    return next
+  }
+
+  previous (): string {
+    if (this._index === 0) {
+      throw new Error('ArgvStream is at the beginning')
+    }
+
+    const next = this._items[this._index]
+
+    this._index--
 
     return next
   }
 
   get isEmpty (): boolean {
-    return this._items.length === 0
+    return this._index >= this._items.length
   }
 }
