@@ -1,5 +1,22 @@
 # 0.0.1
 
+* Added the `MultiCommandHandler`.
+
+```typescript
+const commands = {
+  'some-command': someCommandHandler,
+  'some-other-command': someOtherCommandHandler
+}
+
+const handler = new MultiCommandHandler(commands)
+
+// With default command
+const handler = new MultiCommandHandler(
+  commands,
+  { defaultCommand: 'some-command' }
+)
+```
+
 * Removed the `DefaultsOptionsProvider<T>` and instead requires the `CommandHandler<T>` to
   be created with a default `T`.
 

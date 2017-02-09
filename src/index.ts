@@ -14,6 +14,7 @@ export {FileSystem} from './FileSystem/FileSystem'
 export {Path, FilePath, DirectoryPath} from './FileSystem/Path'
 
 export {CommandHandler} from './Handler/CommandHandler'
+export {MultiCommandHandler} from './Handler/MultiCommandHandler'
 export {Handler} from './Handler/Handler'
 
 export {NodeFileSystem} from './Node/NodeFileSystem'
