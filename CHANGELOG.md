@@ -8,7 +8,7 @@ interface T {
   argument: number
 }
 
-const TArgvParser implements ArgvParser<T> {
+class TArgvParser implements ArgvParser<T> {
   flags = {
     option: ['--option']
   }
