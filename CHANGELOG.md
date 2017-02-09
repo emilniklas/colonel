@@ -9,11 +9,10 @@ interface T {
 }
 
 class TArgvParser implements ArgvParser<T> {
+  positions = ['argument']
   flags = {
     option: ['--option']
   }
-
-  positions = ['argument']
 
   option (stream: ArgvStream, option: keyof T): T[typeof option] {
     switch (option) {
