@@ -90,10 +90,10 @@ class GreetArgvParser implements ArgvParser<GreetOptions> {
  * This is used below for extracting options from a
  * YAML configuration file.
  *
- * `PartialValidator` means that the input object does
+ * `Validator` means that the input object does
  * not need to result in a complete options object.
  */
-class GreetPartialValidator implements PartialValidator<GreetOptions> {
+class GreetValidator implements Validator<GreetOptions> {
   /**
    * A `Partial<T>` object is simply a type alias for
    * `{ [P in keyof T]?: T[P] }`. That means the
@@ -131,12 +131,12 @@ const optionsProviders: OptionsProvider<GreetOptions>[] = [
   // The order matters. The latter providers will
   // take precedence.
   //
-  // Using our `PartialValidator` from before to
+  // Using our `Validator` from before to
   // extract some options from a YAML config file.
   new FileOptionsProvider<GreetOptions>(
     /^\.greet\.yml$/,
     new YamlFormatParser(), // A JsonFormatParser is also available!
-    new GreetPartialValidator()
+    new GreetValidator()
   ),
 
   // Finally, we can use the `ArgvParser` that we
