@@ -60,7 +60,7 @@ class GreetArgvParser implements ArgvParser<GreetOptions> {
    * arguments corresponding with properties on the
    * options object.
    */
-  readonly position: (keyof GreetOptions)[] = ['name']
+  readonly positions: (keyof GreetOptions)[] = ['name']
 
   /**
    * This method is used to map the command line
@@ -212,8 +212,6 @@ const program = new Program(new MultiCommandHandler({
 // pretty output.
 const program = new Program(greetHandler, new MyProgramDisplay())
 
-// When we're ready to start the program, we simply need
-// to strip away the `['/path/to/node', '/path/to/cli.js']`
-// part of `process.argv`, and run `execute`
+// When we're ready to start the program, we `execute`.
 program.execute()
 ```
